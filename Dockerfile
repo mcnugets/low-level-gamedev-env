@@ -18,10 +18,11 @@ RUN apt-get -y update && \
     apt-get install -y curl zip unzip tar
 
 RUN apt-get -y install git &&\
+    cd .. && mkdir gir_repos &&\
     git clone ${vpkg} &&\
-    cd vcpkg && ./bootstrap-vcpkg.bat
+    cd vcpkg && ./bootstrap-vcpkg.sh
     
-ENV VCPKG_ROOT=${parent_dir}/vcpkg
+ENV VCPKG_ROOT=workdir/gir_repos/vcpkg
 ENV PATH=$VCPKG_ROOT:$PATH
 
 
