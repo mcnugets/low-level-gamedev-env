@@ -18,12 +18,17 @@ RUN apt-get -y update && \
     apt-get install -y curl zip unzip tar
 
 RUN apt-get -y install git &&\
-    cd .. && mkdir gir_repos &&\
+    cd .. && mkdir gir_repos && cd gir_repos &&\
     git clone ${vpkg} &&\
     cd vcpkg && ./bootstrap-vcpkg.sh
     
-ENV VCPKG_ROOT=workdir/gir_repos/vcpkg
+ENV VCPKG_ROOT=/workdir/gir_repos/vcpkg 
 ENV PATH=$VCPKG_ROOT:$PATH
+
+RUN vcpkg new --application &&\
+    vcpkg add port sdl2 &&\
+    vcpkg add port bullet3 &&\
+    vcpkg install
 
 
 # WORKDIR ${parent_dir}/git_repos
