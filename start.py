@@ -3,21 +3,28 @@
 import subprocess
 import sys
 
-def s():
+def a():
     subprocess.run(["docker", "build", "--tag", "game_dev_env_image:0.1v", "."])
     subprocess.run(['docker',  'run','-it', '--name', 'gameenv_container', 'game_dev_env_image:0.1v'])
-def d():
+def b():
     subprocess.run(['docker', 'rm', 'gameenv_container'])
+def c():
+    message = input('Enter your commit message: ')
+    subprocess.run(['git', 'add', '*'])
+    subprocess.run(['git', 'commit', '-m', message])
+    subprocess.run(['git', 'push', 'origin', 'main'])
 
-def coms(is_true):
+def coms(command_count):
 
-    if is_true:
-        s()
-    else:
-        d()
+    if command_count==1:
+        a()
+    elif command_count == 2:
+        b()
+    elif command_count == 3:
+        c()
 if __name__ == '__main__':
     
     arg = sys.argv[1]
     arg = arg.lower()
-    switcher = arg == 'true'
-    coms(switcher)
+    
+    coms(int(arg))

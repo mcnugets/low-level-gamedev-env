@@ -9,26 +9,31 @@ ARG sdl2=https://github.com/libsdl-org/SDL.git
 ARG bullet=https://github.com/bulletphysics/bullet3.git
 ARG vpkg=https://github.com/microsoft/vcpkg.git
 
+RUN apt-get -y update && \
+    apt-get install -y --no-install-recommends make cmake build-essential &&\
+    apt-get install -y curl zip unzip tar
 
+RUN apt install -y python3-pip &&\
+    pip install conan 
 
 WORKDIR ${parent_dir}
 
-RUN apt-get -y update && \
-    apt-get install -y  --no-install-recommends make cmake build-essential &&\
-    apt-get install -y curl zip unzip tar
+RUN conan new basic --force  -d name=gamedev_env -d version=1.0 -d requires=sdl/2.28.5 -d requires=bullet3/3.25 &&\
+    conan profile detect 
+   
 
-RUN apt-get -y install git &&\
-    cd .. && mkdir gir_repos && cd gir_repos &&\
-    git clone ${vpkg} &&\
-    cd vcpkg && ./bootstrap-vcpkg.sh
+
+# RUN apt-get -y install git &&\
+#     cd .. && mkdir gir_repos && cd gir_repos &&\
+#     git clone ${vpkg} &&\
+#     cd vcpkg && ./bootstrap-vcpkg.sh
     
-ENV VCPKG_ROOT=/workdir/gir_repos/vcpkg 
-ENV PATH=$VCPKG_ROOT:$PATH
+# ENV VCPKG_ROOT=/gir_repos/vcpkg 
+# ENV PATH=$VCPKG_ROOT:$PATH
 
-RUN vcpkg new --application &&\
-    vcpkg add port sdl2 &&\
-    vcpkg add port bullet3 &&\
-    vcpkg install
+
+
+# RUN vcpkg new --application 
 
 
 # WORKDIR ${parent_dir}/git_repos
