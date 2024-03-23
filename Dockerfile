@@ -11,7 +11,9 @@ ARG vpkg=https://github.com/microsoft/vcpkg.git
 
 RUN apt-get -y update && \
     apt-get install -y --no-install-recommends make cmake build-essential &&\
-    apt-get install -y curl zip unzip tar
+    apt-get install -y curl zip unzip tar &&\
+    apt install -y pkg-config
+    
 
 RUN apt install -y python3-pip &&\
     pip install conan 
