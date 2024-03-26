@@ -1,2 +1,0 @@
-D:/Visual-Projects-Projects/C++ projects/gamedev_environment/build/CMakeFiles/edit_cache.dir
-D:/Visual-Projects-Projects/C++ projects/gamedev_environment/build/CMakeFiles/rebuild_cache.dir

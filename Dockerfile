@@ -7,7 +7,6 @@ LABEL key="ubtuntu environment for cpp"
 ARG parent_dir=/workdir/env
 ARG sdl2=https://github.com/libsdl-org/SDL.git
 ARG bullet=https://github.com/bulletphysics/bullet3.git
-ARG vpkg=https://github.com/microsoft/vcpkg.git
 
 RUN apt-get -y update && \
     apt-get install -y --no-install-recommends make cmake build-essential &&\
@@ -19,9 +18,13 @@ RUN apt install -y python3-pip &&\
     pip install conan 
 
 WORKDIR ${parent_dir}
+ENV dep=" -d name=gamedev_env -d version=1.0 -d requires=sdl/2.28.5 -d requires=bullet3/3.25 -d requires=vulkan-loader/1.3.268.0"
 
-RUN conan new basic --force  -d name=gamedev_env -d version=1.0 -d requires=sdl/2.28.5 -d requires=bullet3/3.25 &&\
-    conan profile detect 
+
+
+RUN conan new cmake_exe --force ${dep} &&\
+    conan profile detect &&\
+    conan install . -c tools.system.package_manager:mode=install --build=missing
    
 
 
@@ -68,7 +71,7 @@ RUN conan new basic --force  -d name=gamedev_env -d version=1.0 -d requires=sdl/
 #     rm -rf /workdir/env/git_repos
     
 
-COPY . ${parent_dir}
+# COPY . ${parent_dir}
 
 # run the cmake
 # RUN cmake ${parent_dir} -G "Unix Makefiles" -B build &&\
