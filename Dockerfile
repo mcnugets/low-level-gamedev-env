@@ -4,7 +4,7 @@ FROM ubuntu:latest
 
 LABEL key="ubtuntu environment for cpp"
 
-ARG parent_dir=/workdir/env
+ARG parent_dir=/workdir/dep
 ARG sdl2=https://github.com/libsdl-org/SDL.git
 ARG bullet=https://github.com/bulletphysics/bullet3.git
 

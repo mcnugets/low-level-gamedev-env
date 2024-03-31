@@ -12,7 +12,7 @@ def a():
     "--name",
     "gameenv_container",
     "-v",
-    f"{subprocess.run(['pwd'], capture_output=True, text=True).stdout.strip()}:/workdir/env",
+    f"{subprocess.run(['pwd'], capture_output=True, text=True).stdout.strip()}/src:/workdir/dep/src",
     "game_dev_env_image:0.1v"
 ])
 def b():
