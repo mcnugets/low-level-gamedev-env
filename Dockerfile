@@ -5,8 +5,7 @@ FROM ubuntu:latest
 LABEL key="ubtuntu environment for cpp"
 
 ARG parent_dir=/workdir/dep
-ARG sdl2=https://github.com/libsdl-org/SDL.git
-ARG bullet=https://github.com/bulletphysics/bullet3.git
+ARG cmake_build=${parent_dir}/build/build/Release/generators/conan_toolchain.cmake 
 
 RUN apt-get -y update && \
     apt-get install -y --no-install-recommends make cmake build-essential &&\
@@ -18,13 +17,17 @@ RUN apt install -y python3-pip &&\
     pip install conan 
 
 WORKDIR ${parent_dir}
-ENV dep=" -d name=gamedev_env -d version=1.0 -d requires=sdl/2.28.5 -d requires=bullet3/3.25 -d requires=vulkan-loader/1.3.268.0"
+ENV dep=" -d name=gamedev_env -d version=1.0 -d requires=bullet3/3.25 -d requires=vulkan-loader/1.3.268.0"
 
 
 
-RUN conan new cmake_exe --force ${dep} &&\
-    conan profile detect &&\
-    conan install . -c tools.system.package_manager:mode=install --build=missing
+RUN conan new basic ${dep} &&\
+    conan profile detect 
+
+COPY . .
+RUN conan install . -c tools.system.package_manager:mode=install --output-folder=build --build=missing &&\
+    cd build && cmake .. -G "Unix Makefiles" -DCMAKE_TOOLCHAIN_FILE=${cmake_build} -DCMAKE_POLICY_DEFAULT_CMP0091=NEW -DCMAKE_BUILD_TYPE=Release &&\
+    cmake --build .
    
 
 
