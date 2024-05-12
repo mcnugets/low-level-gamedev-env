@@ -14,7 +14,7 @@ def a():
     "-v",
     f"{subprocess.run(['pwd'], capture_output=True, text=True).stdout.strip()}/src:/workdir/dep/src",
     "game_dev_env_image:0.1v"
-])
+    ])
 def b():
     subprocess.run(['docker', 'rm', 'gameenv_container'])
 def c():
