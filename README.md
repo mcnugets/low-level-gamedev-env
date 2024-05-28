@@ -1,4 +1,13 @@
 # low-level-gamedev-env
+
+### Things to fix in my current development project:
+- set up the environment so that I have single workspace for local and remote directory
+- figure out the devcontainer.json. Make it effective so that I trigger container from the this file
+- figure out docker-compose
+- maybe automate processes like:
+    - docker cli
+    - cmake cli
+
 ## Description
 The idea is to develop a dedicated environment to start developing games.
 Feel free to contribute to the project, fix issues, or develop it further.
