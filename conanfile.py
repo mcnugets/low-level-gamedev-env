@@ -17,9 +17,10 @@ class BasicConanfile(ConanFile):
     def requirements(self):
         # Each call to self.requires() will add the corresponding requirement
         # to the current list of requirements
-        self.requires("sdl/2.30.1")
+        self.requires("sdl/2.28.3")
         self.requires("bullet3/3.25")
         self.requires("vulkan-loader/1.3.268.0")
+        self.requires("sdl_image/2.6.3")
 
 
 

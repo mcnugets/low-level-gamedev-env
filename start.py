@@ -20,6 +20,7 @@ def a():
             "gameenv_container",
             "-v",
             mounting,
+            "-d",
             "game_dev_env_image:0.1v",
         ]
     )
