@@ -28,6 +28,9 @@ This is the combination of `docker build` and  `docker run`
 ```
 This command is used to perform `docker remove`:
 ```
+
+---
+P.S. I would never think building it withing docker container would such a pain in the ass
     python start.py 2
 ```
 This command is a combo of `git` commands like `git add *`, `git commit`, `git push origin main`:
