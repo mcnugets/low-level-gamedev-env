@@ -16,7 +16,9 @@
 **/.settings
 **/.toolstarget
 **/.vs
+**/build
 **/.vscode
+**/.gitattributes
 **/*.*proj.user
 **/*.dbmdl
 **/*.jfm
@@ -29,6 +31,8 @@
 **/npm-debug.log
 **/obj
 **/secrets.dev.yaml
+**/.devcontainer
+**/.github
 **/values.dev.yaml
 LICENSE
 README.md

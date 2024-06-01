@@ -16,6 +16,8 @@ def a():
             "docker",
             "run",
             "-it",
+            "--gpus",
+            "all",
             "--name",
             "gameenv_container",
             "-v",
