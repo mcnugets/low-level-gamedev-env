@@ -6,7 +6,7 @@ import os
 
 
 def a():
-    # subprocess.run(["docker", "build", "--tag", "game_dev_env_image:0.1v", "."])
+    subprocess.run(["docker", "build", "--tag", "game_dev_env_image:0.1v", "."])
 
     dir = os.getcwd().replace("\\", "/")
     mounting = f"{dir}/src:/workdir/dep/src"

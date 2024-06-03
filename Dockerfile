@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
 
-FROM ubuntu:latest
+FROM nvidia/cuda:12.5.0-runtime-ubuntu22.04
 
 LABEL key="ubuntu environment for cpp"
 
@@ -31,7 +31,7 @@ RUN conan new basic ${dep} &&\
     conan profile detect 
 
 COPY . .
-RUN apt-get -y update && conan install . -c tools.system.package_manager:mode=install --output-folder=build --build=missing &&\
+RUN conan install . -c tools.system.package_manager:mode=install --output-folder=build --build=missing &&\
     cd build && cmake .. -G "Unix Makefiles" -DCMAKE_TOOLCHAIN_FILE=${cmake_build} -DCMAKE_BUILD_TYPE=Release &&\
     cmake --build . 
 
