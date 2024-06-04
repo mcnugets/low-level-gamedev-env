@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdio.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_timer.h>
 #include <SDL2/SDL_image.h>
@@ -49,24 +50,41 @@ int main(int argc, char *argv[])
     SDL_Texture *tex = SDL_CreateTextureFromSurface(rend, surface);
 
     // clears main-memory
+    // clears main-memory
     SDL_FreeSurface(surface);
 
+    // let us control our image position
+    // so that we can move it with our keyboard.
     // let us control our image position
     // so that we can move it with our keyboard.
     SDL_Rect dest;
 
     // connects our texture with dest to control position
     SDL_QueryTexture(tex, NULL, NULL, &dest.w, &dest.h);
+    // connects our texture with dest to control position
+    SDL_QueryTexture(tex, NULL, NULL, &dest.w, &dest.h);
 
+    // adjust height and width of our image box.
     // adjust height and width of our image box.
     dest.w /= 6;
     dest.h /= 6;
 
     // sets initial x-position of object
+    // sets initial x-position of object
     dest.x = (1000 - dest.w) / 2;
 
     // sets initial y-position of object
+
+    // sets initial y-position of object
     dest.y = (1000 - dest.h) / 2;
+
+    ///
+    /// Section 4: SDL ttf and rendering text
+    ///
+
+    ///
+    /// Section 3: Game Loop and Basic Controls
+    ///     Note: The rest of this snippet will be removed
 
     ///
     /// Section 4: SDL ttf and rendering text

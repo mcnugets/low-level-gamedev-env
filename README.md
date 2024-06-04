@@ -34,3 +34,7 @@ This command is a combo of `git` commands like `git add *`, `git commit`, `git p
 ```
     python start.py 3
 ```
+
+
+---
+P.S. I would never think building it withing docker container would such a pain in the ass
