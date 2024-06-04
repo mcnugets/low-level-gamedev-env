@@ -16,14 +16,14 @@ def a():
             "docker",
             "run",
             "-it",
-            "--gpus",
-            "all",
+            # "--gpus",
+            # "all",
             "--name",
             "gameenv_container",
             "-v",
             mounting,
             "-d",
-            "game_dev_env_image:0.1v",
+            "sullmeister/game_env_container:0.1v",
         ]
     )
 
