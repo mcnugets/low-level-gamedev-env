@@ -21,6 +21,7 @@ class BasicConanfile(ConanFile):
         self.requires("bullet3/3.25")
         self.requires("vulkan-loader/1.3.268.0")
         self.requires("sdl_image/2.6.3")
+        self.requires("sdl_ttf/2.20.2")
 
 
 

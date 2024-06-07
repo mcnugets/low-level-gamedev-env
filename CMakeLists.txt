@@ -8,7 +8,7 @@ find_package(Bullet REQUIRED)
 find_package(Vulkan REQUIRED)
 find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
-
+find_package(SDL2_ttf REQUIRED)
 
 
 add_executable(${PROJECT_NAME} src/gamedev_env.cpp src/main.cpp)
@@ -17,6 +17,7 @@ target_link_libraries(${PROJECT_NAME} Bullet::Bullet)
 target_link_libraries(${PROJECT_NAME} Vulkan::Vulkan)
 target_link_libraries(${PROJECT_NAME} SDL2::SDL2)
 target_link_libraries(${PROJECT_NAME} SDL2_image::SDL2_image)
+target_link_libraries(${PROJECT_NAME} SDL2_ttf::SDL2_ttf)
 
 
 
