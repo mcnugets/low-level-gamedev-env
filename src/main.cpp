@@ -3,7 +3,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_timer.h>
 #include <SDL2/SDL_image.h>
-#include <SDL2/SDL2_ttf>
+#include <SDL2/SDL_ttf.h>
 #include <iostream>
 
 // TODO: fix docker contaeinr env
@@ -35,6 +35,7 @@ void render_text(
 
 int main(int argc, char *argv[])
 {
+
     // returns zero on success else non-zero
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
     {
@@ -63,7 +64,7 @@ int main(int argc, char *argv[])
     try
     {
         // please provide a path for your image
-        surface = IMG_Load("../15212165.png");
+        surface = IMG_Load("../Conan_package_manager_logo.png");
     }
     catch (const std::exception &e)
     {
@@ -113,7 +114,13 @@ int main(int argc, char *argv[])
     ///
     /// Section 4: SDL ttf and rendering text
     ///
-
+    TTF_Init();
+    TTF_Font *font = TTF_OpenFont("../Roboto-Regular.ttf", 48);
+    if (font == NULL)
+    {
+        printf("error initializing TTF: %s\n", TTF_GetError());
+        return 1;
+    }
     ///
     /// Section 3: Game Loop and Basic Controls
     ///     Note: The rest of this snippet will be removed
@@ -172,18 +179,24 @@ int main(int argc, char *argv[])
         if (dest.y < 0)
             dest.y = 0;
 
-        // clears the screen
-        SDL_RenderClear(rend);
-        SDL_RenderCopy(rend, tex, NULL, &dest);
-
         ///
         /// Section 4: SDL ttf and rendering text
         ///
+        SDL_Rect text_rect;
+
+        // The color for the text we will be displaying
+        SDL_Color white = {255, 255, 255, 0};
+
+        // so we can have nice text, two lines one above the next
+        render_text(rend, 10, 10, "Hello World!", font, &text_rect, &white);
+        render_text(rend, 10, text_rect.y + text_rect.h, "Conan demo by JFrog", font, &text_rect, &white);
 
         // triggers the double buffers
         // for multiple rendering
         SDL_RenderPresent(rend);
-
+        // clears the screen
+        SDL_RenderClear(rend);
+        SDL_RenderCopy(rend, tex, NULL, &dest);
         // calculates to 60 fps
         SDL_Delay(1000 / 60);
     }
@@ -195,6 +208,17 @@ int main(int argc, char *argv[])
     ///
     /// Section 5: Freeing resources
     ///
+    // close font handle
+    TTF_CloseFont(font);
+
+    // close TTF
+    TTF_Quit();
+
+    // destroy texture
+    SDL_DestroyTexture(tex);
+
+    // destroy renderer
+    SDL_DestroyRenderer(rend);
     ///
     /// Section 4: SDL ttf and rendering text
     ///

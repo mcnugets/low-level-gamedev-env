@@ -6,7 +6,7 @@ import os
 
 
 def a():
-    subprocess.run(["docker", "build", "--tag", "game_dev_env_image:0.1v", "."])
+    # subprocess.run(["docker", "build", "--tag", "game_dev_env_image:0.1v", "."])
 
     dir = os.getcwd().replace("\\", "/")
     mounting = f"{dir}/src:/workdir/dep/src"
@@ -21,7 +21,7 @@ def a():
             "-v",
             mounting,
             "-d",
-            "sullmeister/game_env_container:0.1v",
+            "sullmeister/game_env_container:0.2v", # make the tag version editable manualy in the future
         ]
     )
 
